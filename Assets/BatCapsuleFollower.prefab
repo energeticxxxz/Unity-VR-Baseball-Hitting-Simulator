@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4118154338095453527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a81929f4f335234888ddb811223f566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 300
+  _sensitivity: 100
 --- !u!114 &-9154775680241644821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dbe53233b351846b756da4e439e473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 1000
+  maxVelocity: 10000
 --- !u!136 &-777965789740559828
 CapsuleCollider:
   m_ObjectHideFlags: 0

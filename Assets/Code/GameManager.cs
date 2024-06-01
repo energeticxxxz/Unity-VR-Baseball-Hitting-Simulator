@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool rightHanded = false;
 
     public GameObject player;
 
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPlayer();
+        SetPlayerPosition();
     }
 
     // Update is called once per frame
@@ -26,20 +25,38 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void SpawnPlayer()
+    public void SetPlayerPosition()
     {
-        if (rightHanded)
+        if (PlayerSettings.Instance.RightHanded)
         {
             player.transform.position = rightHandedSpawn.transform.position;
+
+            //disable old bat and destroy capsules
+            BatCapsuleFollower.DestroyBatCapsuleFollowers();
+
+            rightBat.SetActive(false);
+
+            //enable new bat (automatically creates new capsules
             leftBat.SetActive(true);
+
+            Debug.Log("switching to right handed mode");
+
         }
         else
         {
             player.transform.position = leftHandedSpawn.transform.position;
+
+            //disable old bat and destroy capsules
+            BatCapsuleFollower.DestroyBatCapsuleFollowers();
+
+            leftBat.SetActive(false);
+
+            //enable new bat (automatically creates new capsules
             rightBat.SetActive(true);
+
+            Debug.Log("switching to left handed mode");
+
         }
-
-
     }
 
 }

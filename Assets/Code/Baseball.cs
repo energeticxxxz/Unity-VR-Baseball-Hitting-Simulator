@@ -70,30 +70,40 @@ public class Baseball : MonoBehaviour
     }
     void FixedUpdate()
     {
-        ApplyDrag();
-        ApplyMagnusEffect();
+        if(!wasHit)
+        {
+            ApplyDrag();
+            ApplyMagnusEffect();
+        }
     }
 
     void GenerateBeforeHitPathTracer()
     {
-        if (!PathTracer.traceOnlyAfterHit)
+        if(PlayerSettings.Instance.TracePitch)
         {
-            beforeHitPathTracer = Instantiate(pathTracerPrefab, transform.position, Quaternion.identity);
-            beforeHitPathTracerScript = beforeHitPathTracer.GetComponent<PathTracer>();
-            beforeHitPathTracerScript.InitializedPathTracer(gameObject, false);
+            if (!PathTracer.traceOnlyAfterHit)
+            {
+                beforeHitPathTracer = Instantiate(pathTracerPrefab, transform.position, Quaternion.identity);
+                beforeHitPathTracerScript = beforeHitPathTracer.GetComponent<PathTracer>();
+                beforeHitPathTracerScript.InitializedPathTracer(gameObject, false);
+            }
         }
+
     }
 
     void GenerateAfterHitPathTracer()
-    {
-        if (wasHit && !afterHitTracerCreated)
+    {   
+        if(PlayerSettings.Instance.TraceHit)
         {
-            Debug.Log("Generating after hit tracer");
-            afterHitPathTracer = Instantiate(pathTracerPrefab, transform.position, Quaternion.identity);
-            afterHitPathTracerScript = afterHitPathTracer.GetComponent<PathTracer>();
-            afterHitPathTracerScript.InitializedPathTracer(gameObject, true);
+            if (wasHit && !afterHitTracerCreated)
+            {
+                Debug.Log("Generating after hit tracer");
+                afterHitPathTracer = Instantiate(pathTracerPrefab, transform.position, Quaternion.identity);
+                afterHitPathTracerScript = afterHitPathTracer.GetComponent<PathTracer>();
+                afterHitPathTracerScript.InitializedPathTracer(gameObject, true);
 
-            afterHitTracerCreated = true;
+                afterHitTracerCreated = true;
+            }
         }
     }
 

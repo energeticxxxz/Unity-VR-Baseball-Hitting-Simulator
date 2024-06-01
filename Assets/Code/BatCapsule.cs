@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BatCapsule : MonoBehaviour
@@ -12,6 +13,10 @@ public class BatCapsule : MonoBehaviour
     void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    private void OnEnable()
+    {
         SpawnBatCapsuleFollower();
     }
 
@@ -32,6 +37,8 @@ public class BatCapsule : MonoBehaviour
 
 
         follower.SetFollowTarget(this);
+
+        BatCapsuleFollower.batCapsuleFollowers.Add(follower);
     }
 
 }

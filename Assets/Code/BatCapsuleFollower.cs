@@ -4,12 +4,32 @@ using UnityEngine;
 
 public class BatCapsuleFollower : MonoBehaviour
 {
+
+    public static List<BatCapsuleFollower> batCapsuleFollowers = new List<BatCapsuleFollower>();
+
+    public static void DestroyBatCapsuleFollowers()
+    {
+        if(batCapsuleFollowers.Count > 0)
+        {
+            for (int i = 0; i < batCapsuleFollowers.Count; i++)
+            {
+                if (batCapsuleFollowers[i] != null)
+                    Destroy(batCapsuleFollowers[i].gameObject);
+            }
+
+            batCapsuleFollowers = new List<BatCapsuleFollower>();
+        }
+    }
+
+
+    //non-static code vv
+
     private BatCapsule _batFollower;
     private Rigidbody _rigidbody;
     private Vector3 _velocity;
 
     [SerializeField]
-    private float _sensitivity = 100f;
+    private float _sensitivity = 170f;
 
     private void Awake()
     {
